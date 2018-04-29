@@ -1,4 +1,4 @@
-const { Container, allow, publicInternet , Range} = require('@quilt/quilt');
+const {Container, allow, publicInternet , Range} = require('@quilt/quilt');
 var fs = require("fs");
 
 let image = 'quilt/spark';
@@ -68,17 +68,6 @@ function Spark(nMaster, nWorker, zookeeper) {
 
   // Flexible for workers on the same machine 
   // WARNING: does not account for other service ports!
-  var count = 0;
-  for (; count < nWorker; count ++) {
-    allow(this.workers[count], publicInternet, 80 + count);
-    allow(this.workers[count], publicInternet, 53 + count);
-    allow(this.workers[count], publicInternet, 443 + count);
-    allow(this.workers[count], publicInternet, 5000 + count);
-    allow(publicInternet, this.workers[count], 80 + count);
-    allow(publicInternet, this.workers[count], 53 + count);
-    allow(publicInternet, this.workers[count], 443 + count);
-    allow(publicInternet, this.workers[count], 5000 + count);
-  }
 
   // If workers are not on the same machine
   // cont = this.workers;

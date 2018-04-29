@@ -45,12 +45,28 @@ var machine5 = new quilt.Machine({
     preemptible: true,
 });
 
+var machine6 = new quilt.Machine({
+    provider: "Amazon",
+    size: "m4.large",
+    diskSize: 20,
+    preemptible: true,
+});
+
+var machine7 = new quilt.Machine({
+    provider: "Amazon",
+    size: "m4.large",
+    diskSize: 21,
+    preemptible: true,
+});
+
 utils.addSshKey(machine0);
 utils.addSshKey(machine1);
 utils.addSshKey(machine2);
 utils.addSshKey(machine3);
 utils.addSshKey(machine4);
 utils.addSshKey(machine5);
+utils.addSshKey(machine6);
+utils.addSshKey(machine7);
 
 var countNode = 3;
 const nodeRepository = 'tsaianson/node-apt-app';
@@ -66,6 +82,6 @@ deployment.deploy(machine6.asWorker());
 deployment.deploy(machine7.asWorker());
 
 // Needs to be six machines! (Temporary)
-apartmentApp.machPlacements([15, 16, 17, 18, 19]);
+apartmentApp.machPlacements([15, 16, 17, 18, 19, 20, 21]);
 
 deployment.deploy(apartmentApp);
