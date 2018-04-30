@@ -1,14 +1,14 @@
 const { Container, publicInternet } = require('@quilt/quilt');
 
-function Kibana(es) {
+function Kibana(es, port1) {
   this.container = new Container('kibana', 'kibana:4', {
     command: [
-      '--port', this.port.toString(),
+      '--port', port1.toString(),
       '--elasticsearch', es.uri(),
     ],
   });
   es.addClient(this.container);
-  this.container.allowFrom(publicInternet, this.port);
+  this.container.allowFrom(publicInternet, port1);
 }
 
 Kibana.prototype.deploy = function deploy(depl) {

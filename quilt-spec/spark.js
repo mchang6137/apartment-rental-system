@@ -88,7 +88,10 @@ function Spark(nMaster, nWorker, zookeeper) {
   this.placeOn = function placeOn(diskSizes) {
     this.masters[0].placeOn({diskSize: diskSizes[0]});
     this.workers[0].placeOn({diskSize: diskSizes[1]});
-    this.workers[1].placeOn({diskSize: diskSizes[2]});
+      this.workers[1].placeOn({diskSize: diskSizes[2]});
+      this.workers[2].placeOn({diskSize: diskSizes[3]});
+      this.workers[3].placeOn({diskSize: diskSizes[4]});
+      this.workers[4].placeOn({diskSize: diskSizes[5]});
   };
 
   this.job = function job(command) {
@@ -109,9 +112,9 @@ function Spark(nMaster, nWorker, zookeeper) {
   };
 
   this.exposeUIToPublic = function exposeUIToPublic() {
-    allow(publicInternet, this.masters, 8080);
-    allow(publicInternet, this.workers[0], 8081);
-    allow(publicInternet, this.workers[1], 8082);
+    //allow(publicInternet, this.masters, 8080);
+    //allow(publicInternet, this.workers[0], 8081);
+    //allow(publicInternet, this.workers[1], 8082);
     return this;
   };
 
